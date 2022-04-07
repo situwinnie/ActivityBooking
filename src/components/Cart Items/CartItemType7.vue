@@ -52,7 +52,6 @@
                 </div>
             </div>
             
-            
                 
         </div>
         <div :id="'collapse_'+cart_item_data.item_id" class="collapse abw_cart_item_collapsed" aria-labelledby="headingOne" data-parent="#accordion">

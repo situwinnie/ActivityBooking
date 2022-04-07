@@ -65,7 +65,6 @@
                                                     </div>
                                                 </div>
 
-
                                                 <div :hidden="this.no_item_selected"  class="justify-content-center align-items-center">
                                                     <div class="extra">
                                                     <div v-if="item_data.enhancements.length > 0" class="align-self-start">

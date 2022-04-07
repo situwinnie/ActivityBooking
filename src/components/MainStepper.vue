@@ -68,7 +68,7 @@
             
           </div>
           
-          
+        
         </div>
         <div
           id="payment-part"

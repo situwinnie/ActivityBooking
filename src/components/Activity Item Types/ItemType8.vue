@@ -36,6 +36,7 @@
                                             </div>
                                         </div>
                                         </div>
+                                        
                                         <div class="col-8 text-left abw_act_item_details_desc">
                                             <div class="product-name abw_act_item_details_name"><h4 class="itemTitle">{{ item_data.name }}</h4></div>
                                             <div class="itemDesc">{{ itemDescription }}</div>

@@ -70,7 +70,7 @@
                                               <div :hidden="this.no_item_selected"  class="justify-content-center align-items-center">
                                                 <div class="extra">
                         <div v-if="item_data.enhancements.length > 0" class="align-self-start"><span class="abw_act_item_extras_title product-name">Extras</span>
-                            
+                          
                                 <div v-for="enhancement of item_data.enhancements" :key="enhancement.id">
                                     <div class="row">
                                         <div class="col-8 abw_act_item_extra_name">

@@ -1,7 +1,7 @@
 <template lang="">
     <div class="abw_act_item_card">
         <div class="abw_act_item_card-body">
-          
+        
                     <div class=" justify-content-center align-items-center">
                         <div class="abw_act_item_details">
                                     <div class="row">

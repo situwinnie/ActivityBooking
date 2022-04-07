@@ -12,8 +12,7 @@
                         </div>
                         <div class="col-md-7">
                             <p class="text-right abw_cart_item_base_price">
-                                
-                                
+                                    
                                 <small>
                                 <strong>{{this.$store.getters.getCurrency}}  {{ sess.price[sess.qty] ?? (sess.price[1] * sess.qty) }}</strong>
                                 </small>

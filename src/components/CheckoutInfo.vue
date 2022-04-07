@@ -6,6 +6,7 @@
               <h3>Checkout</h3>
               <hr />
               <div>
+                
                 <section class="clean-block clean-form dark">
                   <div class="container text-left">
                     <form>

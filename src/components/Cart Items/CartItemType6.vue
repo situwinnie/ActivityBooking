@@ -56,7 +56,6 @@
             <div class="card-body">
                 <div v-if="cart_item_data.enhancements.length > 0" class="row">
                     <div class="col" style="background: #ffffff;">
-                        <!-- <h4><span class="text" style="color: #000000;">Extras</span></h4> -->
                         <div class="row">
                             <div class="col" style="background: #ffffff;">
                                 <p style="background: #ffffff;font-size: 12px;text-align: left;"><strong>Extras</strong></p>

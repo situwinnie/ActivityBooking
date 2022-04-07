@@ -40,6 +40,7 @@
                                             <div class="itemDesc">{{ itemDescription }}</div>
                                             <span class="priceItem">{{ company_currency }} {{ currency(this.item_selected_total)  }}</span>
                                          <div class="choice">
+                                           
                                             <div v-for="pack of item_data.packages" :key="pack.id" class="row">
                                                 <div class="col align-self-center">
                                                     <div class="row">

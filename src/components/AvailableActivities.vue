@@ -2,7 +2,7 @@
     <div class="abw_available_act_card">
                 <div class="abw_available_act_card-body">
                     <h5 :key="availableActComponentKey" class="abw_available_act_header_text">Available Activities On {{ formatted_date }}</h5>
-                   
+        
                     <div v-if="loading_activities">
                         <div class="d-flex justify-content-center">
                             <div class="spinner-border" role="status">

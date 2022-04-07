@@ -92,7 +92,7 @@
                         <!-- <h4><span class="text" style="color: #000000;">Extras</span></h4> -->
                         <div class="row">
                             <div class="col" style="background: #ffffff;">
-                                <p style="background: #ffffff;font-size: 12px;text-align: left;"><strong>Extras</strong></p>
+                                <p style="background: #fff;font-size: 12px;text-align: left;"><strong>Extras</strong></p>
                             </div>
                         </div>
                         <div v-for="enhancement of cart_item_data.enhancements " :key="enhancement.id" class="row">

@@ -26,7 +26,6 @@ export default {
 };
 </script>
 
-
 <style>
 @import '../public/assets/css/template.css';
 @import url(https://use.fontawesome.com/e220fd8e50.css);

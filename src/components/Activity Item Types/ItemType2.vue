@@ -114,7 +114,7 @@
                                 </div>
                                            </div><!--HERE Choice-->
                          
-                                         <!--HERE EXTRA-->
+                                         <!--EXTRA-->
                                          
                                               <div :hidden="this.no_item_selected"  class="justify-content-center align-items-center">
                                                 <div class="extra">

@@ -5,8 +5,7 @@
                 <div class="col-md-12">
                     <p class="text-left abw_cart_item_name"><strong >{{ cart_item_data.item_name }}</strong></p>
                     </div>
-            </div>
-                        
+            </div>         
             <div class="row">
                 <div class="col-md-5">
                     <p class="text-left abw_cart_item_price_label"><small>{{ cart_item_data.item_qty}} Pc(s)</small></p>

@@ -41,7 +41,7 @@
                     </p>
                 </div>
                 <div class="col-md-7 d-flex justify-content-end">
-                    
+    
                     <button class="btn btn-outline-primary btn-sm abw_cart_item_details_btn" data-toggle="collapse" :data-target="'#collapse_'+cart_item_data.item_id" aria-expanded="false" aria-controls="collapseOne">
                        Details
                     </button>

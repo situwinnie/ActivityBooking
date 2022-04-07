@@ -65,7 +65,7 @@
                     <div class="col" style="background: #ffffff;">
                         <!-- <h4><span class="text" style="color: #000000;">Extras</span></h4> -->
                         <div class="row ">
-                            <div class="col" style="background: #ffffff;">
+                            <div class="col" style="background: #fff;">
                                 <span style="background: #ffffff;font-size: 14px;text-align: left;"><strong>Extras</strong></span>
                             </div>
                         </div>

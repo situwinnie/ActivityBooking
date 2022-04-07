@@ -16,7 +16,6 @@
                     </div>
                 </div>
             </div>
-            
             <div v-if="cart_item_data.enhancements.length > 0" class="row">
                 <div class="col-md-5">
                     <p class="text-left abw_cart_item_extras_label"><small>Extras</small></p>
