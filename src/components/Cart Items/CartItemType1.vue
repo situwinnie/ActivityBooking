@@ -1,6 +1,6 @@
 <template lang="">
     <div class="abw_cart_item_card">
-        <div class="card-header" id="headingOne">
+        <div class="card-header cart-summary" id="headingOne">
             <div class="row">
                 <div class="col-md-12">
                     <p class="text-left abw_cart_item_name" ><strong >{{ cart_item_data.item_name }}</strong></p>
@@ -8,33 +8,33 @@
             </div>
            
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-5">
                     <p class="text-left abw_cart_item_price_label"><small>Base Price </small></p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-7">
                     <p class="text-right abw_cart_item_base_price"><small>
                         <strong>{{this.$store.getters.getCurrency}} {{ currency(cart_item_data.price[1]) }}</strong></small></p>
                 </div>
             </div>
             
             <div v-if="cart_item_data.enhancements.length > 0" class="row">
-                <div class="col-md-8">
+                <div class="col-md-5">
                     <p class="text-left abw_cart_item_extras_label"><small>Extras</small></p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-7">
                     <p class="text-right abw_cart_item_extras_text"><small><strong>{{this.$store.getters.getCurrency}} {{ currency(enhancementsTotal) }}</strong></small></p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
+            <div class="row mgtb-1">
+                <div class="col-md-7">
                     <p class="text-left abw_cart_item_subtotal_text" style="color: #ff573d;">
                         <strong style="font-size: 14px">{{this.$store.getters.getCurrency}} {{ currency(subTotal) }}</strong>
                     </p>
                 </div>
-                <div class="col-md-6 d-flex justify-content-end">
+                <div class="col-md-5 d-flex justify-content-end">
                     
                     <button class="btn btn-outline-primary btn-sm abw_cart_item_details_btn" data-toggle="collapse" :data-target="'#collapse_'+cart_item_data.item_id" aria-expanded="false" aria-controls="collapseOne">
-                       <small> Details </small>
+                       Details
                     </button>
                     &nbsp;
                     <div v-if="item_removing_from_cart">
@@ -53,24 +53,20 @@
                             aria-expanded="true" 
                             aria-controls="collapseOne"
                             v-on:click="removeFromCart">
-                            <small> Remove </small>
+                            <i class="fa fa-trash"></i>
                         </button>
                     </div>
                     
                 </div>
             </div>
-            
-            
-                
-        </div>
-        <div :id="'collapse_'+cart_item_data.item_id" class="collapse abw_cart_item_collapsed" aria-labelledby="headingOne" data-parent="#accordion">
+             <div :id="'collapse_'+cart_item_data.item_id" class="collapse abw_cart_item_collapsed" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
                 <div v-if="cart_item_data.enhancements.length > 0" class="row">
                     <div class="col" style="background: #ffffff;">
                         <!-- <h4><span class="text" style="color: #000000;">Extras</span></h4> -->
-                        <div class="row">
+                        <div class="row ">
                             <div class="col" style="background: #ffffff;">
-                                <p style="background: #ffffff;font-size: 14px;text-align: left;"><strong>Extras</strong></p>
+                                <span style="background: #ffffff;font-size: 14px;text-align: left;"><strong>Extras</strong></span>
                             </div>
                         </div>
                         <div v-for="enhancement of cart_item_data.enhancements " :key="enhancement.id" class="row">
@@ -85,10 +81,17 @@
                        
                     </div>
                 </div>
+                <div class="mgtb-1">
                 <!-- <h4><span class="text">Discount (30% Off)</span><span class="price">- TZS 6,500</span></h4> -->
-                <h4><span class="text abw_cart_item_subtotal_text">Sub Total:&nbsp;</span><span class="price" style="color: #ff573d;">{{this.$store.getters.getCurrency}} {{ currency(subTotal) }}</span></h4>
+                <span class=" text abw_cart_item_subtotal_text">Sub Total:&nbsp;</span><span class="price" style="color: #ff573d;">{{this.$store.getters.getCurrency}} {{ currency(subTotal) }}</span>
             </div>
+            </div>
+        </div><!--End of colapse-->
+            
+            
+                
         </div>
+       
     </div>
 </template>
 <script>
