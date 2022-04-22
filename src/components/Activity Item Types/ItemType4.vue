@@ -15,30 +15,13 @@
                                                 <button class="abw_act_item_details_btn" type="button" data-toggle="modal" :data-target=" itemModalTarget ">More Details
                                                 </button>
                                             </div>
-                                            <div class="col" style="margin-top: 6px;">
-                                                <div v-if="item_adding_to_cart">
-                                                    <div class="d-flex justify-content-center">
-                                                        <p>Adding Item..&nbsp;&nbsp;</p>
-                                                        <div class="spinner-border text-danger" role="status">
-                                                            <span class="sr-only">Loading...</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div v-else>
-                                                    <button class="abw_act_item_cart_btn" type="button" v-on:click="addActivityToCart"
-                                                    :key="addToCartBtnKey"
-                                                    :disabled="no_item_selected">
-                                                        Add To Cart
-                                                    </button>
-                                                </div>
-                                            </div>
+                                            
                                         </div>
 
                                         </div>
                                         <div class="col-8 text-left abw_act_item_details_desc">
                                             <div class="product-name abw_act_item_details_name"><h4 class="itemTitle">{{ item_data.name }}</h4></div>
                                             <div class="itemDesc">{{ itemDescription }}</div>
-                                            <span class="priceItem">{{ company_currency }} {{ currency(this.item_selected_total)  }}</span>
                                          <div class="choice">
                                            
                                             <div v-for="pack of item_data.packages" :key="pack.id" class="row">
@@ -68,10 +51,32 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    <div><span class="value"></span></div>
+                                                    <div><span class="value"></span>
+                                                    </div>
                                                 </div>
-                                                </div>
+                                                </div>  
                                             </div>
+
+                                                <div class="priceAddBtn row">
+                                        <div class="col-6"><span class="priceItem">{{ company_currency }} {{ currency(this.item_selected_total) }} </span></div>
+                                             <div class="col-6">
+                          <div v-if="item_adding_to_cart">
+                            <div class="d-flex justify-content-center">
+                                <p>Adding Item..&nbsp;&nbsp;</p>
+                                <div class="spinner-border text-danger" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                          </div>
+                          <div v-else>
+                                <button class="abw_act_item_cart_btn" type="button" v-on:click="addActivityToCart"
+                                :key="addToCartBtnKey"
+                                :disabled="no_item_selected">
+                                Add To Cart
+                                </button>
+                          </div>
+                        </div>
+                        </div><!--priceAddbtn-->
 
                                         </div>
                                     </div>

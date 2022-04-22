@@ -29,7 +29,7 @@ h4.itemTitle{color: #303030;font-weight: 500;margin: 0 0 8px;font-size: 22px;fon
     flex: 1 1 auto;
     min-height: 1px;
     /* padding: 1.25rem; */
-    background-color: #fff;
+    background-color: transparent !important;
 }
 
 .abw_available_act_header_text{
@@ -111,7 +111,7 @@ h4.itemTitle{color: #303030;font-weight: 500;margin: 0 0 8px;font-size: 22px;fon
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
-  border-radius: 0.25rem;
+  border-radius: 0;
   color: #fff;
   background-color: #ff681a;
   display: block;
@@ -301,3 +301,4 @@ aside{background:#f4f4f4;/*position: fixed;width: 15%;*/}
 .cart-summary .abw_cart_item_subtotal_text{margin-bottom:0 !important}
 .cart-summary .abw_cart_item_collapsed .card-body{margin:1rem 0}
 .transparent{background: transparent !important;border:medium none !important}
+.priceAddBtn{margin:2rem auto 0}

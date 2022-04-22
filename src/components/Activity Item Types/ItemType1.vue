@@ -14,26 +14,7 @@
                             <button class="abw_act_item_details_btn" type="button" data-toggle="modal" :data-target=" itemModalTarget ">More Details
                             </button>
                         </div><!--col-->
-                        <div class="col" style="margin-top: 6px;">
-                            <div v-if="item_adding_to_cart">
-                                <div class="d-flex justify-content-center">
-                                    <p>Adding Item..&nbsp;&nbsp;</p>
-                                    <div class="spinner-border text-danger" role="status">
-                                        <span class="sr-only">Loading...</span>
-                                    </div>
-                                </div><!--d-flex justify-content-center-->
-                          </div><!--item_adding_to_cart-->
-                            <div v-else>
-                              <button class="abw_act_item_cart_btn" type="button" 
-                                v-on:click="addActivityToCart">
-                                   Add To Cart
-                                </button>
-                                <!--<button class="abw_act_item_cart_btn" type="button" 
-                                v-on:click="addActivityToCart">
-                                   Add To Cart {{ company_currency }} [ {{ currency(this.item_selected_total) }} ]
-                                </button>-->
-                            </div> <!--v-else-->
-                        </div><!--col-->
+                        
                     
         </div>
                                         
@@ -44,9 +25,7 @@
                                         <h4 class="itemTitle">{{ item_data.name }}</h4>
                                          </div>
                                             <div class="itemDesc">{{ itemDescription }}</div>
-
-                                        <span class="priceItem">{{ company_currency }} {{ currency(this.item_selected_total) }}</span>
-
+                    
                                         <div class="extra"> 
                                              <div v-if="item_data.enhancements.length > 0" class="align-self-start">
                                                <span class="abw_act_item_extras_title product-name">Extras</span>
@@ -66,6 +45,30 @@
                         
 
                                         </div><!--EXTRA-->
+
+                                              <div class="priceAddBtn row">
+                                        <div class="col-6"><span class="priceItem">{{ company_currency }} {{ currency(this.item_selected_total) }}</span></div>
+                                         <div class="col-6">
+                            <div v-if="item_adding_to_cart">
+                                <div class="d-flex justify-content-center">
+                                    <p>Adding Item..&nbsp;&nbsp;</p>
+                                    <div class="spinner-border text-danger" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </div><!--d-flex justify-content-center-->
+                          </div><!--item_adding_to_cart-->
+                            <div v-else>
+                              <button class="abw_act_item_cart_btn" type="button" 
+                                v-on:click="addActivityToCart">
+                                   Add To Cart
+                                </button>
+                                <!--<button class="abw_act_item_cart_btn" type="button" 
+                                v-on:click="addActivityToCart">
+                                   Add To Cart {{ company_currency }} [ {{ currency(this.item_selected_total) }} ]
+                                </button>-->
+                            </div> <!--v-else-->
+                        </div><!--col-->
+                        </div><!--priceAddbtn-->
                                   </div>
                                         <!--abw_act_item_details_desc text-left-->
                                     </div>
