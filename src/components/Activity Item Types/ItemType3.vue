@@ -14,23 +14,7 @@
                                                     <button class="abw_act_item_details_btn" type="button" data-toggle="modal" :data-target=" itemModalTarget ">More Details
                                                     </button>
                                                 </div>
-                                                <div class="col" style="margin-top: 6px;">
-                                                    <div v-if="item_adding_to_cart">
-                                                        <div class="d-flex justify-content-center">
-                                                            <p>Adding Item..&nbsp;&nbsp;</p>
-                                                            <div class="spinner-border text-danger" role="status">
-                                                                <span class="sr-only">Loading...</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div v-else>
-                                                        <button class="abw_act_item_cart_btn" type="button" v-on:click="addActivityToCart"
-                                                        :key="addToCartBtnKey"
-                                                        :disabled="no_item_selected">
-                                                            Add To Cart
-                                                        </button>
-                                                    </div>
-                                                </div>
+                                              
                                             </div>
                                         </div>
                                         <div class="col-8 text-left abw_act_item_details_desc">
@@ -68,10 +52,31 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div><span class="value"></span></div>
+                                                        <div><span class="value"></span>
+                                                        </div> 
                                                     </div>
-                                                    </div>
+                                                    </div><!--extra-->
                                                 </div>
+
+                                              <div class="row">
+                                                  <div class="col-6 offset-md-6" style="margin-top:2rem">
+                                                    <div v-if="item_adding_to_cart">
+                                                        <div class="d-flex justify-content-center">
+                                                            <p>Adding Item..&nbsp;&nbsp;</p>
+                                                            <div class="spinner-border text-danger" role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div v-else>
+                                                        <button class="abw_act_item_cart_btn" type="button" v-on:click="addActivityToCart"
+                                                        :key="addToCartBtnKey"
+                                                        :disabled="no_item_selected">
+                                                            Add To Cart
+                                                        </button>
+                                                    </div><!-- v-else-->
+                                                </div><!--AddToCart-->
+                                                </div><!--ROW-->
                                                 
                                         </div>
                                     </div>
