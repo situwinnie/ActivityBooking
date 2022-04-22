@@ -3,7 +3,7 @@
     <div class="abw_cart_card-body">
       <div class="abw_cart_list">
         <h3>Cart</h3>
-        <hr />
+        <hr>
         <div style="">
           <div class="accordion" id="accordion">
             <div v-for="cart_item of cart_data.cart_items" :key="cart_item.item_id">

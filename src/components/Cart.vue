@@ -3,7 +3,6 @@
     <div class="abw_cart_card-body">
       <div class="abw_cart_list">
         <h3>Cart</h3>
-        <hr />
         <div style="">
           <div class="accordion" id="accordion">
             <div v-for="cart_item of cart_data.cart_items" :key="cart_item.item_id">
@@ -58,7 +57,6 @@
           </div>
         </div>
 
-        <h4>
           <div class="pt-3 row">
             <div class="col-md-3">
               <span class="text abw_cart_total_text" 
@@ -72,7 +70,6 @@
               >
             </div>
           </div>
-        </h4>
         <button
           class="btn btn-primary btn-block btn-lg abw_cart_checkout_btn"
           type="button"

@@ -1,15 +1,18 @@
 <template>
+
 <!-- <main class="page shopping-cart-page"> -->
   <!-- <section class="clean-block clean-cart dark"> -->
     <div class="container abw_container">
     
     <div>
       <div class="row">
-        <div class="col-md-7 col-lg-7 " >
+        <div class="col-md-9 col-lg-9 " >
           <available-activities :co_id="this.act_co_id" :search_date="this.$store.getters.getSearchDate" :key="availableActivitiesComponentKey"></available-activities>         
         </div>
-        <div class="col-md-5 col-lg-5">
+        <div class="col-md-3 col-lg-3 pdd0">
+          <aside>
           <cart :key="cartComponentKey"></cart>
+          </aside>
         </div>
       </div>
     </div>
@@ -82,12 +85,12 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 60px; */
 }
 @import url("../assets/css/smoothproducts.css");
 @import url("../assets/bootstrap/css/bootstrap.min.css");

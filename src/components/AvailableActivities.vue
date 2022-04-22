@@ -2,7 +2,7 @@
     <div class="abw_available_act_card">
                 <div class="abw_available_act_card-body">
                     <h5 :key="availableActComponentKey" class="abw_available_act_header_text">Available Activities On {{ formatted_date }}</h5>
-                    <hr>
+        
                     <div v-if="loading_activities">
                         <div class="d-flex justify-content-center">
                             <div class="spinner-border" role="status">
@@ -12,50 +12,48 @@
                     </div>
                     <div v-else>
                         <div class="abw_available_act_list">
-                            <div style="">
+
+                            
                                 <div v-for="activity of activities" :key="activity.id">
-                                    <div v-if="activity.type == 1">
+                                    <div class="activityList" v-if="activity.type == 1">
                                         <ItemType1 :company_currency="currency" :item_data = activity />
                                         &nbsp;
                                     </div>
-                                    <div v-else-if="activity.type === 2">
+                                    <div class="activityList" v-else-if="activity.type === 2">
                                         <ItemType2 :company_currency="currency" :item_data = activity />
                                         &nbsp;
                                     </div>
-                                    <div v-else-if="activity.type === 3">
+                                    <div class="activityList" v-else-if="activity.type === 3">
                                         <ItemType3 :company_currency="currency" :item_data = activity />
                                         &nbsp;
                                     </div>
-                                    <div v-else-if="activity.type === 4">
+                                    <div class="activityList" v-else-if="activity.type === 4">
                                         <ItemType4 :company_currency="currency" :item_data = activity />
                                         &nbsp;
                                     </div>
-                                    <div v-else-if="activity.type === 5">
+                                    <div class="activityList" v-else-if="activity.type === 5">
                                         <ItemType5 :company_currency="currency" :item_data = activity />
                                         &nbsp;
                                     </div>
-                                    <div v-else-if="activity.type === 6">
+                                    <div class="activityList" v-else-if="activity.type === 6">
                                         <ItemType6 :company_currency="currency" :item_data = activity />
                                         &nbsp;
                                     </div>
-                                    <div v-else-if="activity.type === 7">
+                                    <div class="activityList" v-else-if="activity.type === 7">
                                         <ItemType7 :company_currency="currency" :item_data = activity />
                                         &nbsp;
                                     </div>
-                                    <div v-else-if="activity.type === 8">
+                                    <div class="activityList" v-else-if="activity.type === 8">
                                         <ItemType8 :company_currency="currency" :item_data = activity />
                                         &nbsp;
                                     </div>
-                                    <div v-else-if="activity.type === 9">
+                                    <div class="activityList" v-else-if="activity.type === 9">
                                         <ItemType9 :company_currency="currency" :item_data = activity />
                                         &nbsp;
                                     </div>
                                     <div v-else>
                                     </div>
                                 </div>
-                                
-                                
-                            </div>
                         </div>
                     </div>
                     

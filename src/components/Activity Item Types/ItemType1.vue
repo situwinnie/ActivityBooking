@@ -1,25 +1,74 @@
 <template lang="">
     <div class="abw_act_item_card">
         <div class="abw_act_item_card-body">
-            <div >
-                <div >
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col abw_act_item_details">
-                            <div>
-                                <div class="col ">
-                                    <a class="product-name text-left abw_act_item_details_name" href="#" style="margin-bottom: 0px;color: #000000;">
-                                        <strong>{{ item_data.name }}</strong><br>
-                                        <strong>{{ company_currency }} {{ currency(this.item_selected_total) }}</strong>
-                                    </a>
-                                    <div class="row" style="margin: 0px;margin-top: 6px;margin-bottom: 6px;">
+        
+                    <div class=" justify-content-center align-items-center">
+                        <div class="abw_act_item_details">
+                                    <div class="row">
                                         <div class="col-4 abw_act_item_details_image">
+                                          <figure>
                                             <img class="img-fluid d-block mx-auto image" :src=" (item_data.photos.length > 0) ? item_data.photos[0].file_location : '' ">
+                                        </figure>
+                                        <div class="row justify-content-center align-items-center Pbtn">
+                        <div class="col" style="margin-top: 6px;">
+                            <button class="abw_act_item_details_btn" type="button" data-toggle="modal" :data-target=" itemModalTarget ">More Details
+                            </button>
+                        </div><!--col-->
+                        <div class="col" style="margin-top: 6px;">
+                            <div v-if="item_adding_to_cart">
+                                <div class="d-flex justify-content-center">
+                                    <p>Adding Item..&nbsp;&nbsp;</p>
+                                    <div class="spinner-border text-danger" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </div><!--d-flex justify-content-center-->
+                          </div><!--item_adding_to_cart-->
+                            <div v-else>
+                              <button class="abw_act_item_cart_btn" type="button" 
+                                v-on:click="addActivityToCart">
+                                   Add To Cart
+                                </button>
+                                <!--<button class="abw_act_item_cart_btn" type="button" 
+                                v-on:click="addActivityToCart">
+                                   Add To Cart {{ company_currency }} [ {{ currency(this.item_selected_total) }} ]
+                                </button>-->
+                            </div> <!--v-else-->
+                        </div><!--col-->
+                    
+        </div>
+                                        
                                         </div>
+                                        <!--abw_act_item_details_image-->
                                         <div class="col-8 abw_act_item_details_desc text-left">
-                                            <span style="font-size: 13px; ">{{ itemDescription }}</span>
+                                          <div class="product-name text-left abw_act_item_details_name">
+                                        <h4 class="itemTitle">{{ item_data.name }}</h4>
+                                         </div>
+                                            <div class="itemDesc">{{ itemDescription }}</div>
+
+                                        <span class="priceItem">{{ company_currency }} {{ currency(this.item_selected_total) }}</span>
+
+                                        <div class="extra"> 
+                                             <div v-if="item_data.enhancements.length > 0" class="align-self-start">
+                                               <span class="abw_act_item_extras_title product-name">Extras</span>
+                            
+                                <div v-for="enhancement of item_data.enhancements" :key="enhancement.id">
+                                    <div class="row">
+                                        <div class="col-8 abw_act_item_extra_name">
+                                            <p style="font-size: 13px;">{{ enhancement.name }} -&nbsp;<strong>{{this.$store.getters.getCurrency}}  {{ currency(enhancement.base_price) }}</strong></p>
+                                        </div>
+                                        <div class="col-3 offset-md-1 text-center align-self-center abw_act_item_extra_qty_input">
+                                            <input class="form-control-sm form-control quantity-input" type="number" :id="'enhancement_'+enhancement.id" min="0" value="0" v-on:change="changeQty" style="text-align: center;font-size: 13px;">
                                         </div>
                                     </div>
                                 </div>
+                            <div><span class="value"></span></div>
+                        </div>
+                        
+
+                                        </div><!--EXTRA-->
+                                  </div>
+                                        <!--abw_act_item_details_desc text-left-->
+                                    </div>
                                 <!-- <div >
                                     <div class="row" style="margin-top: 4px;margin-bottom: 4px;">
                                         <div class="col align-self-center">
@@ -34,8 +83,7 @@
                                         </div>
                                     </div>
                                 </div> -->
-                            </div>
-                        </div>
+                        </div><!--bw_act_item_details-->
                         
                     </div>
                     <div v-if="item_has_error" class="row justify-content-center align-items-center">
@@ -46,45 +94,8 @@
                             </button>
                         </div>
                     </div>
-                     <div v-if="item_data.enhancements.length > 0" class="align-self-start"><a class="abw_act_item_extras_title product-name" href="#" style="color: #000000;"><strong>Extras</strong></a><br><br>
-                            <div>
-                                <div v-for="enhancement of item_data.enhancements" :key="enhancement.id">
-                                    <div class="row">
-                                        <div class="col-7 abw_act_item_extra_name">
-                                            <p style="font-size: 13px;">{{ enhancement.name }} -&nbsp;<strong>{{this.$store.getters.getCurrency}}  {{ currency(enhancement.base_price) }}</strong></p>
-                                        </div>
-                                        <div class="col-5 text-center align-self-center abw_act_item_extra_qty_input">
-                                            <input class="form-control-sm form-control quantity-input" type="number" :id="'enhancement_'+enhancement.id" min="0" value="0" v-on:change="changeQty" style="text-align: center;font-size: 13px;">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div><span class="value"></span></div>
-                        </div>
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col" style="margin-top: 6px;">
-                            <button class="abw_act_item_details_btn" type="button" data-toggle="modal" :data-target=" itemModalTarget "><strong>More Details</strong>
-                            </button>
-                        </div>
-                        <div class="col" style="margin-top: 6px;">
-                            <div v-if="item_adding_to_cart">
-                                <div class="d-flex justify-content-center">
-                                    <p>Adding Item..&nbsp;&nbsp;</p>
-                                    <div class="spinner-border text-danger" role="status">
-                                        <span class="sr-only">Loading...</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div v-else>
-                                <button class="abw_act_item_cart_btn" type="button" 
-                                v-on:click="addActivityToCart">
-                                    <strong  style="font-size: 14px;">Add To Cart {{ company_currency }} [ {{ currency(this.item_selected_total) }} ]</strong>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    
+                    
         </div>
     </div>
     
@@ -162,11 +173,14 @@ export default {
   name: "ItemType1",
   props: {
     item_data: Object,
-    company_currency: String
+    company_currency: String,
   },
   data() {
     return {
-      item_selected_total: this.item_data.pricings[0].base_price == null ? 0 : this.item_data.pricings[0].base_price[1],
+      item_selected_total:
+        this.item_data.pricings[0].base_price == null
+          ? 0
+          : this.item_data.pricings[0].base_price[1],
       item_has_error: false,
       item_adding_to_cart: false,
       item_error_message: "",
@@ -203,8 +217,15 @@ export default {
     },
 
     itemBasePrice() {
-      var price = this.item_data.pricings[0].base_price == null ? 0 : this.item_data.pricings[0].base_price[1];
-      console.log(this.item_data.pricings[0].base_price == null ? 0 : this.item_data.pricings[0].base_price[1]);
+      var price =
+        this.item_data.pricings[0].base_price == null
+          ? 0
+          : this.item_data.pricings[0].base_price[1];
+      console.log(
+        this.item_data.pricings[0].base_price == null
+          ? 0
+          : this.item_data.pricings[0].base_price[1]
+      );
 
       return Math.round(price * 100 + Number.EPSILON) / 100;
     },
@@ -224,9 +245,10 @@ export default {
       });
 
       this.item_selected_total =
-        (this.item_data.pricings[0].base_price == null ? 0 : this.item_data.pricings[0].base_price[1]) +  enhancements_total;
+        (this.item_data.pricings[0].base_price == null
+          ? 0
+          : this.item_data.pricings[0].base_price[1]) + enhancements_total;
 
-      
       // if(this.item_selected_total == 0){
       //   this.no_item_selected = true;
       // }else{
@@ -242,9 +264,8 @@ export default {
 
       var extras = [];
       this.item_data.enhancements.forEach((element) => {
-        var enh_qty = document.getElementById(
-          "enhancement_" + element.id
-        ).value;
+        var enh_qty = document.getElementById("enhancement_" + element.id)
+          .value;
         if (enh_qty > 0) {
           var enhancement = {
             id: element.id,

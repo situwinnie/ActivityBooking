@@ -3,38 +3,93 @@
         <div class="abw_act_item_card-body">
             <div class="items">
                 <div class="product">
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col abw_act_item_details">
-                            <div>
-                                <div class="col"><a class="product-name abw_act_item_details_name" href="#" style="margin-bottom: 0px;color: #000000;"><strong>{{ item_data.name }}</strong></a>
+                    <div class="justify-content-center align-items-center">
+                        <div class="abw_act_item_details">
+                            
+                                
                                     <div class="row" style="margin: 0px;margin-top: 6px;margin-bottom: 6px;">
-                                        <div class="col-4 abw_act_item_details_image"><img class="img-fluid d-block mx-auto image" :src=" (item_data.photos.length > 0) ? item_data.photos[0].file_location : '' "></div>
-                                        <div class="col-8 text-left abw_act_item_details_desc"><span style="font-size: 13px; ">{{ itemDescription }}</span></div>
-                                    </div>
-                                </div>
-                                <div v-for="sess of item_data.sessions" :key="sess.id" class="row" style="margin-top: 4px;margin-bottom: 4px;">
-                                    <div class="col align-self-center">
-                                        <div class="row" >
-                                            <div class="col-12 align-self-center" style="text-align: left;">
-                                                <div v-if="sess.blockage.is_blocked" class="form-check text-left">
-                                                    <input class="form-check-input" type="checkbox" :id="'ab_s_cb'+sess.id" v-on:change="changeQty" disabled>
-                                                    <label class="form-check-label" :id="'ab_s'+sess.id" for="formCheck-9" style="font-size: 14px;">
-                                                        <strike>{{ sess.name}} - {{this.$store.getters.getCurrency}} &nbsp;<strong>{{ currency(sess.pricings[0].base_price[1]) }}</strong> </strike> &nbsp;Unavailable 
-                                                    </label>
+                                        <div class="col-4 abw_act_item_details_image">
+                                            <figure>
+                                              <img class="img-fluid d-block mx-auto image" :src=" (item_data.photos.length > 0) ? item_data.photos[0].file_location : '' ">
+                                           </figure>
+                                           <div class="row justify-content-center align-items-center Pbtn">
+                                            <div class="col" style="margin-top: 6px;">
+                                                <button class="abw_act_item_details_btn" type="button" data-toggle="modal" :data-target=" itemModalTarget ">More Details
+                                                </button>
+                                            </div>
+                                            <div class="col" style="margin-top: 6px;">
+                                                <div v-if="item_adding_to_cart">
+                                                    <div class="d-flex justify-content-center">
+                                                        <p>Adding Item..&nbsp;&nbsp;</p>
+                                                        <div class="spinner-border text-danger" role="status">
+                                                            <span class="sr-only">Loading...</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div v-else class="form-check text-left">
-                                                    <input class="form-check-input" type="checkbox" :id="'ab_s_cb'+sess.id" v-on:change="changeQty">
-                                                    <label class="form-check-label" :id="'ab_s'+sess.id" for="formCheck-9" style="font-size: 14px;">
-                                                        {{ sess.name}} - {{this.$store.getters.getCurrency}} &nbsp;<strong>{{ currency(sess.pricings[0].base_price[1] )}}</strong>
-                                                    </label>
+                                                <div v-else>
+                                                    <button class="abw_act_item_cart_btn" type="button" v-on:click="addActivityToCart"
+                                                    :key="addToCartBtnKey"
+                                                    :disabled="no_item_selected">
+                                                       Add To Cart
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
+
+                                        </div>
+                                            <div class="col-8 text-left abw_act_item_details_desc">
+                                            <div class="product-name abw_act_item_details_name">
+                                                <h4 class="itemTitle">{{ item_data.name }}</h4></div>
+                                                <div class="itemDesc">{{ itemDescription }}</div>
+                                                <span class="priceItem">{{ company_currency }} {{ currency(this.item_selected_total)  }}</span>
+                                                <div class="choice">
+                                                    <div v-for="sess of item_data.sessions" :key="sess.id" class="row">
+                                                        <div class="col align-self-center">
+                                                            <div class="row" >
+                                                                <div class="col-12 align-self-center" style="text-align: left;">
+                                                                    <div v-if="sess.blockage.is_blocked" class="form-check text-left">
+                                                                        <input class="form-check-input" type="checkbox" :id="'ab_s_cb'+sess.id" v-on:change="changeQty" disabled>
+                                                                        <label class="form-check-label" :id="'ab_s'+sess.id" for="formCheck-9" style="font-size: 14px;">
+                                                                            <strike>{{ sess.name}} - {{this.$store.getters.getCurrency}} &nbsp;<strong>{{ currency(sess.pricings[0].base_price[1]) }}</strong> </strike> &nbsp;Unavailable 
+                                                                        </label>
+                                                                    </div>
+                                                                    <div v-else class="form-check text-left">
+                                                                        <input class="form-check-input" type="checkbox" :id="'ab_s_cb'+sess.id" v-on:change="changeQty">
+                                                                        <label class="form-check-label" :id="'ab_s'+sess.id" for="formCheck-9" style="font-size: 14px;">
+                                                                            {{ sess.name}} - {{this.$store.getters.getCurrency}} &nbsp;<strong>{{ currency(sess.pricings[0].base_price[1] )}}</strong>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div :hidden="this.no_item_selected"  class="justify-content-center align-items-center">
+                                                    <div class="extra">
+                                                    <div v-if="item_data.enhancements.length > 0" class="align-self-start">
+                                                      <span class="abw_act_item_extras_title product-name">Extras</span>
+                                                        <div>
+                                                            <div v-for="enhancement of item_data.enhancements" :key="enhancement.id">
+                                                                <div class="row">
+                                                                    <div class="col-7 abw_act_item_extra_name">
+                                                                        <p style="font-size: 13px;">{{ enhancement.name }} -&nbsp;<strong>{{this.$store.getters.getCurrency}}  {{ currency(enhancement.base_price) }}</strong></p>
+                                                                    </div>
+                                                                    <div class="col-3 offset-md-1 text-center align-self-center abw_act_item_extra_qty_input">
+                                                                        <input class="form-control-sm form-control quantity-input" type="number" :id="'enhancement_'+enhancement.id" min="0" value="0" v-on:change="changeQty" style="text-align: center;font-size: 13px;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div><span class="value"></span></div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+
+                                        </div>
                                     </div>
-                                </div>
                                 
                                 
-                            </div>
                         </div>
                         
                     </div>
@@ -46,46 +101,8 @@
                             </button>
                         </div>
                     </div>
-                    <div :hidden="this.no_item_selected"  class="row justify-content-center align-items-center p-2">
-                        <div v-if="item_data.enhancements.length > 0" class="align-self-start"><a class="abw_act_item_extras_title product-name" href="#" style="color: #000000;"><strong>Extras</strong></a><br><br>
-                            <div>
-                                <div v-for="enhancement of item_data.enhancements" :key="enhancement.id">
-                                    <div class="row">
-                                        <div class="col-7 abw_act_item_extra_name">
-                                            <p style="font-size: 13px;">{{ enhancement.name }} -&nbsp;<strong>{{this.$store.getters.getCurrency}}  {{ currency(enhancement.base_price) }}</strong></p>
-                                        </div>
-                                        <div class="col-5 text-center align-self-center abw_act_item_extra_qty_input">
-                                            <input class="form-control-sm form-control quantity-input" type="number" :id="'enhancement_'+enhancement.id" min="0" value="0" v-on:change="changeQty" style="text-align: center;font-size: 13px;">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div><span class="value"></span></div>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col" style="margin-top: 6px;">
-                            <button class="abw_act_item_details_btn" type="button" data-toggle="modal" :data-target=" itemModalTarget "><strong>More Details</strong>
-                            </button>
-                        </div>
-                        <div class="col" style="margin-top: 6px;">
-                            <div v-if="item_adding_to_cart">
-                                <div class="d-flex justify-content-center">
-                                    <p>Adding Item..&nbsp;&nbsp;</p>
-                                    <div class="spinner-border text-danger" role="status">
-                                        <span class="sr-only">Loading...</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div v-else>
-                                <button class="abw_act_item_cart_btn" type="button" v-on:click="addActivityToCart"
-                                :key="addToCartBtnKey"
-                                :disabled="no_item_selected">
-                                    <strong style="font-size: 1vw;">Add To Cart {{ company_currency }} [ {{ currency(this.item_selected_total)  }}]</strong>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    
+                    
                 </div>
             </div>
         </div>

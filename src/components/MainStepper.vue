@@ -68,7 +68,7 @@
             
           </div>
           
-          
+        
         </div>
         <div
           id="payment-part"
@@ -215,6 +215,6 @@ export default {
 </script>
 <style>
 .active .bs-stepper-circle{
-  background-color: #eb699e !important;
+  background-color: #ff573d !important;
 }
 </style>
